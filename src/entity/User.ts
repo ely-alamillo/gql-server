@@ -23,8 +23,12 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
+  // @Field()
+  // name(@Root() parent: User): string {
+  //   return `${parent.firstName} ${parent.lastName}`;
+  // }
   @Field()
-  name(@Root() parent: User): string {
-    return `${parent.firstName} ${parent.lastName}`;
+  name(): string {
+    return `${this.firstName} ${this.lastName}`;
   }
 }
