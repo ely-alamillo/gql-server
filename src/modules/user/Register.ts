@@ -8,6 +8,7 @@ import { logger } from "../../middleware/logger";
 
 @Resolver()
 export class RegisterResolver {
+  // @Authorized() use w/ authChecker defined in index.ts
   @UseMiddleware(isAuth, logger)
   @Query(() => String)
   async hello() {
