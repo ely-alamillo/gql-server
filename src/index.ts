@@ -27,4 +27,5 @@ const main = async () => {
   });
 };
 
+console.log("calling main");
 main();
