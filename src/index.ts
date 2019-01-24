@@ -12,7 +12,8 @@ import { RegisterResolver } from "./modules/user/Register";
 import { LoginResolver } from "./modules/user/Login";
 import { MeResolver } from "./modules/user/me";
 import { customAuthChecker } from "./authChecker";
-import { ConfirmUserResolver } from "./modules/user/register/confirmUser";
+import { ConfirmUserResolver } from "./modules/user/confirmUser";
+import { ForgotPasswordResolver } from "./modules/user/ForgotPassword";
 
 const main = async () => {
   await createConnection();
@@ -22,7 +23,8 @@ const main = async () => {
       RegisterResolver,
       LoginResolver,
       MeResolver,
-      ConfirmUserResolver
+      ConfirmUserResolver,
+      ForgotPasswordResolver
     ],
     authChecker: customAuthChecker
   });
