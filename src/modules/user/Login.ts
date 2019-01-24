@@ -24,6 +24,11 @@ export class LoginResolver {
       return null;
     }
 
+    if (!user.confirmed) {
+      // have better implementtion
+      return null;
+    }
+
     // send/set cookie
     ctx.req.session!.userId = user.id;
 
