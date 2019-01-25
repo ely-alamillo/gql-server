@@ -18,12 +18,9 @@ export class ForgotPasswordResolver {
 
     const token = v4();
 
-    await redis.set(token, user.id, "ex", 60 * 60 * 24);
+    await redis.set(forgotPasswordPrefix + token, user.id, "ex", 60 * 60 * 24);
 
-    await sendEmail(
-      forgotPasswordPrefix + email,
-      `http:localhost:3000/user/change-password/${token}`
-    );
+    await sendEmail(email, `http:localhost:3000/user/change-password/${token}`);
     return true;
   }
 }
