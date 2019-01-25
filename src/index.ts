@@ -14,6 +14,7 @@ import { MeResolver } from "./modules/user/me";
 import { customAuthChecker } from "./authChecker";
 import { ConfirmUserResolver } from "./modules/user/confirmUser";
 import { ForgotPasswordResolver } from "./modules/user/ForgotPassword";
+import { ChangePasswordResolver } from "./modules/user/changePassword";
 
 const main = async () => {
   await createConnection();
@@ -24,7 +25,8 @@ const main = async () => {
       LoginResolver,
       MeResolver,
       ConfirmUserResolver,
-      ForgotPasswordResolver
+      ForgotPasswordResolver,
+      ChangePasswordResolver
     ],
     authChecker: customAuthChecker
   });
