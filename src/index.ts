@@ -12,9 +12,9 @@ import { RegisterResolver } from "./modules/user/Register";
 import { LoginResolver } from "./modules/user/Login";
 import { MeResolver } from "./modules/user/me";
 import { customAuthChecker } from "./authChecker";
-import { ConfirmUserResolver } from "./modules/user/confirmUser";
+import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
 import { ForgotPasswordResolver } from "./modules/user/ForgotPassword";
-import { ChangePasswordResolver } from "./modules/user/changePassword";
+import { ChangePasswordResolver } from "./modules/user/ChangePassword";
 
 const main = async () => {
   await createConnection();
