@@ -15,6 +15,7 @@ import { customAuthChecker } from "./authChecker";
 import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
 import { ForgotPasswordResolver } from "./modules/user/ForgotPassword";
 import { ChangePasswordResolver } from "./modules/user/ChangePassword";
+import { LogoutResolver } from "./modules/user/Logout";
 
 const main = async () => {
   await createConnection();
@@ -26,14 +27,15 @@ const main = async () => {
       MeResolver,
       ConfirmUserResolver,
       ForgotPasswordResolver,
-      ChangePasswordResolver
+      ChangePasswordResolver,
+      LogoutResolver
     ],
     authChecker: customAuthChecker
   });
 
   const apolloServer = new ApolloServer({
     schema,
-    context: ({ req }: any) => ({ req }),
+    context: ({ req, res }: any) => ({ req, res }),
     formatError: formatArgumentValidationError
   });
 
