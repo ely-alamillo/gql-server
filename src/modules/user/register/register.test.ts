@@ -1,7 +1,6 @@
 import { testConnection } from "../../../test-utils/testConnection";
 import { Connection } from "typeorm";
 import { gCall } from "../../../test-utils/gCall";
-import { GraphQLError } from "graphql";
 
 let conn: Connection;
 beforeAll(async () => {
@@ -28,8 +27,8 @@ mutation Register($data: RegisterInput!) {
 
 describe("Register", () => {
   test("It creates a user.", async () => {
-    // const res = await
-    gCall({
+    console.log("hellooooo");
+    const res = await gCall({
       source: registerMutation,
       variableValues: {
         data: {
@@ -39,9 +38,8 @@ describe("Register", () => {
           password: "password"
         }
       }
-    })
-      .then(r => console.log({ r }))
-      .catch((e: GraphQLError) => console.log({ ...e }));
-    // console.log(JSON.stringify(res));
+    });
+    console.log("end");
+    console.log(JSON.stringify(res));
   });
 });
