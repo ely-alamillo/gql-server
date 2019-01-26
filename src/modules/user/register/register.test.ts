@@ -1,12 +1,12 @@
-import { testConnection } from "../../../test-utils/testConnection";
 import { Connection } from "typeorm";
+
 import { gCall } from "../../../test-utils/gCall";
+import { testConnection } from "../../../test-utils/testConnection";
 
 let conn: Connection;
 beforeAll(async () => {
   conn = await testConnection();
 });
-
 afterAll(async () => {
   await conn.close();
 });
@@ -26,20 +26,19 @@ mutation Register($data: RegisterInput!) {
 `;
 
 describe("Register", () => {
-  test("It creates a user.", async () => {
-    console.log("hellooooo");
-    const res = await gCall({
-      source: registerMutation,
-      variableValues: {
-        data: {
-          firstName: "John",
-          lastName: "Doee",
-          email: "johndoe@test.com",
-          password: "password"
+  it("It creates a user.", async () => {
+    console.log(
+      await gCall({
+        source: registerMutation,
+        variableValues: {
+          data: {
+            firstName: "John",
+            lastName: "Doe",
+            email: "johndoe@test.com",
+            password: "password"
+          }
         }
-      }
-    });
-    console.log("end");
-    console.log(JSON.stringify(res));
+      })
+    );
   });
 });
