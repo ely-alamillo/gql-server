@@ -1,8 +1,8 @@
-import { graphql } from "graphql";
-import { createSchema } from "../utils/createSchema";
+import { graphql, GraphQLSchema } from "graphql";
 import Maybe from "graphql/tsutils/Maybe";
 
-// not sure if I really need maybe
+import { createSchema } from "../utils/createSchema";
+
 interface Options {
   source: string;
   variableValues?: Maybe<{
@@ -10,9 +10,15 @@ interface Options {
   }>;
 }
 
+let schema: GraphQLSchema;
+
 export const gCall = async ({ source, variableValues }: Options) => {
+  if (!schema) {
+    schema = await createSchema();
+  }
+
   return graphql({
-    schema: await createSchema(),
+    schema,
     source,
     variableValues
   });
