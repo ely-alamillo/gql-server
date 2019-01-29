@@ -25,15 +25,11 @@ const main = async () => {
     formatError: formatArgumentValidationError,
     validationRules: [
       queryComplexity({
-        // The maximum allowed query complexity, queries above this threshold will be rejected
         maximumComplexity: 10,
-        // The query variables. This is needed because the variables are not available
-        // in the visitor of the graphql-js library
+
         // bug in apollo server so we use empty object
         variables: {},
-        // Optional callback function to retrieve the determined query complexity
-        // Will be invoked weather the query is rejected or not
-        // This can be used for logging or to implement rate limiting
+
         onComplete: (complexity: number) => {
           console.log("Query Complexity:", complexity);
         },
