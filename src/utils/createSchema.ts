@@ -11,6 +11,8 @@ import {
   CreateUserResolver,
   CreateProductResolver
 } from "../modules/user/CreateUser";
+import { ProfilePictureResolver } from "../modules/user/ProfilePicture";
+import { logger } from "../middleware/logger";
 
 export const createSchema = async () => {
   return buildSchema({
@@ -23,8 +25,10 @@ export const createSchema = async () => {
       ChangePasswordResolver,
       LogoutResolver,
       CreateUserResolver,
-      CreateProductResolver
+      CreateProductResolver,
+      ProfilePictureResolver
     ],
-    authChecker: customAuthChecker
+    authChecker: customAuthChecker,
+    globalMiddlewares: [logger]
   });
 };
