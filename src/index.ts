@@ -26,6 +26,7 @@ const main = async () => {
 
   // middleware
 
+  app.use(Express.json());
   app.use(
     cors({
       origin: "http://localhost:4000",
