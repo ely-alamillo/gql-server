@@ -7,6 +7,10 @@ import { ForgotPasswordResolver } from "../modules/user/ForgotPassword";
 import { ChangePasswordResolver } from "../modules/user/ChangePassword";
 import { LogoutResolver } from "../modules/user/Logout";
 import { customAuthChecker } from "../authChecker";
+import {
+  CreateUserResolver,
+  CreateProductResolver
+} from "../modules/user/CreateUser";
 
 export const createSchema = async () => {
   return buildSchema({
@@ -17,7 +21,9 @@ export const createSchema = async () => {
       ConfirmUserResolver,
       ForgotPasswordResolver,
       ChangePasswordResolver,
-      LogoutResolver
+      LogoutResolver,
+      CreateUserResolver,
+      CreateProductResolver
     ],
     authChecker: customAuthChecker
   });
