@@ -7,10 +7,10 @@ import session from "express-session";
 import connectRedis from "connect-redis";
 import { redis } from "./redis";
 import cors from "cors";
-import queryComplexity, {
-  fieldConfigEstimator,
-  simpleEstimator
-} from "graphql-query-complexity";
+// import queryComplexity, {
+//   fieldConfigEstimator,
+//   simpleEstimator
+// } from "graphql-query-complexity";
 
 import { createSchema } from "./utils/createSchema";
 
@@ -24,25 +24,23 @@ const main = async () => {
     context: ({ req, res }: any) => ({ req, res }),
     formatError: formatArgumentValidationError,
     validationRules: [
-      queryComplexity({
-        maximumComplexity: 10,
-
-        // bug in apollo server so we use empty object
-        variables: {},
-
-        onComplete: (complexity: number) => {
-          console.log("Query Complexity:", complexity);
-        },
-        estimators: [
-          // Using fieldConfigEstimator is mandatory to make it work with type-graphql
-          fieldConfigEstimator(),
-          // This will assign each field a complexity of 1 if no other estimator
-          // returned a value. We can define the default value for field not explicitly annotated
-          simpleEstimator({
-            defaultComplexity: 1
-          })
-        ]
-      }) as any
+      // queryComplexity({
+      //   maximumComplexity: 10,
+      //   // bug in apollo server so we use empty object
+      //   variables: {},
+      //   onComplete: (complexity: number) => {
+      //     console.log("Query Complexity:", complexity);
+      //   },
+      //   estimators: [
+      //     // Using fieldConfigEstimator is mandatory to make it work with type-graphql
+      //     fieldConfigEstimator(),
+      //     // This will assign each field a complexity of 1 if no other estimator
+      //     // returned a value. We can define the default value for field not explicitly annotated
+      //     simpleEstimator({
+      //       defaultComplexity: 1
+      //     })
+      //   ]
+      // }) as any
     ]
   });
 
@@ -54,7 +52,7 @@ const main = async () => {
   app.use(Express.json());
   app.use(
     cors({
-      origin: "http://localhost:4000",
+      origin: "http://localhost:3000",
       credentials: true
     })
   );
