@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Arg } from "type-graphql";
+import { Resolver, Query, Mutation, Arg, Authorized } from "type-graphql";
 import bcrypt from "bcryptjs";
 
 import { User } from "../../entity/User";
@@ -10,7 +10,8 @@ import { createConfirmationUrl } from "../../utils/createConfirmationUrl";
 
 @Resolver()
 export class RegisterResolver {
-  // @Authorized() use w/ authChecker defined in index.ts
+  // use w/ authChecker defined in index.ts
+   @Authorized() 
   // @UseMiddleware(isAuth, logger)
   @Query(() => String)
   async hello() {
